@@ -34,8 +34,8 @@ The reference architecture consists of:
 
 ### References
 
-- **Chen et al. (2017)**: Performance Evaluation of CNN Models in Urban Acoustic Event Recognition Through MFCC Hyperparameter Search. In 2023 Congress in Computer Science, Computer Engineering, & Applied Computing (CSCE), pp. 186-193. IEEE.
-- **Doshi et al. (2022)**: Acoustic Event Detection using Deep Learning: DCASE2022 Challenge. [Online]. Available: [https://ieeexplore.ieee.org/document/10487496](https://ieeexplore.ieee.org/document/10487496)
-- **Tsalera et al. (2021)**: Comparison of CNN Architectures for Urban Sound Classification. [Online]. Available: [https://arxiv.org/abs/2107.12345](https://arxiv.org/abs/2107.12345)
-- **Massoudi et al. (2021)**: Reduced CNN Models for Urban Acoustic Event Recognition. [Online]. Available: [https://arxiv.org/abs/2107.56789](https://arxiv.org/abs/2107.56789)
+- **Chen et al. (2017)**: Chen, Y., Zhang, Y., and Duan, Z. (2017). Dcase2017 sound event detection using convolutional neural network. Detection and Classification of Acoustic Scenes and Events. Available at: [https://dcase.community/documents/challenge2017/technical_reports/DCASE2017_Chen_124.pdf](https://dcase.community/documents/challenge2017/technical_reports/DCASE2017_Chen_124.pdf)
+- **Doshi et al. (2022)**: Doshi, S., Patidar, T., Gautam, S., and Kumar, R. (2022). Acoustic Scene Analysis and Classification Using Densenet Convolutional Neural Network. Tech. rep., EasyChair. Available at: [https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.19728895.v1](https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.19728895.v1)
+- **Tsalera et al. (2021)**: Tsalera, E., Papadakis, A., and Samarakou, M. (2021). Comparison of pre-trained cnns for audio classification using transfer learning. Journal of Sensor and Actuator Networks 10, 72. Available at: [https://www.mdpi.com/2224-2708/10/4/72](https://www.mdpi.com/2224-2708/10/4/72)
+- **Massoudi et al. (2021)**: Massoudi, M., Verma, S., and Jain, R. (2021). Urban sound classification using cnn. In 2021 6th International Conference on Inventive Computation Technologies (ICICT) (IEEE), 583–589. Available at: [https://www.researchgate.net/profile/Massoud-Massoudi/publication/349660725_Urban_Sound_Classification_using_CNN/links/615fd85b1eb5da761e5e0dd5/Urban-Sound-Classification-using-CNN.pdf](https://www.researchgate.net/profile/Massoud-Massoudi/publication/349660725_Urban_Sound_Classification_using_CNN/links/615fd85b1eb5da761e5e0dd5/Urban-Sound-Classification-using-CNN.pdf)
 
