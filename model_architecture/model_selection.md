@@ -32,6 +32,8 @@ The reference architecture consists of:
 - **Flattened Layer**: The output of the pooling layer is flattened.
 - **Dense Layer with Softmax Activation**: This layer is used for the final classification.
 
+![image](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/7653e4f4-f18a-419d-b663-d1498f299d21)
+
 ### References
 
 - **Chen et al. (2017)**: Chen, Y., Zhang, Y., and Duan, Z. (2017). Dcase2017 sound event detection using convolutional neural network. Detection and Classification of Acoustic Scenes and Events. Available at: [https://dcase.community/documents/challenge2017/technical_reports/DCASE2017_Chen_124.pdf](https://dcase.community/documents/challenge2017/technical_reports/DCASE2017_Chen_124.pdf)
