@@ -52,3 +52,11 @@ Each of these models was developed following the same approach of balancing and 
 |  Non-Siren     |               UrbanSound8k                          | Air conditioning, car horn, children playing, dog barking, drill, engine, jackhammer, gunshot, and street music |      929       |
 |     Scream     |           Screams Dataset Kaggle                    |                                 Screams                                   |      391       |
 |  Non-Scream    |               UrbanSound8k                          | Air conditioning, car horn, children playing, dog barking, drill, engine, jackhammer, gunshot, siren, and street music |      391       |
+
+
+Each dataset used in our study is referenced below:
+
+- **UrbanSound8k**: J. Salamon, C. Jacoby, and J. P. Bello, “A dataset and taxonomy for urban sound research,” in Proceedings of the 22nd ACM international conference on Multimedia, 2014, pp. 1041–1044.
+- **Sound Events for Surveillance Applications (SESA)**: T. Spadini, “Sound events for surveillance applications,” Oct 2019. [Online]. Available: [https://zenodo.org/record/3519845](https://zenodo.org/record/3519845)
+- **Screams Dataset Kaggle**: S. A. Arusha, “Scream dataset,” May 2022. [Online]. Available: [https://www.kaggle.com/datasets/sanzidaakterarusha/scream-dataset?datasetId=1903423&amp;sortBy=dateRun&amp;tab=collaboration](https://www.kaggle.com/datasets/sanzidaakterarusha/scream-dataset?datasetId=1903423&amp;sortBy=dateRun&amp;tab=collaboration)
+
