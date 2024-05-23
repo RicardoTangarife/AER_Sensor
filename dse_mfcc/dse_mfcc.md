@@ -1,43 +1,43 @@
-## Acoustic Event Recognition Model
+## Design Space Exploration for MFCC Feature Extraction
 
-In our research, we evaluated five different neural network architectures specifically for the classification of acoustic events. The evaluated architectures were:
+The Mel-frequency cepstral coefficients (MFCC) have been widely employed due to their proven effectiveness in describing audio features and structures. This method has proven valuable in automatic speech recognition, music information retrieval, environmental sound retrieval, and the detection, classification, and recognition of acoustic events.
 
-- CNN1D
-- CNN2D
-- LSTM
-- DNN
-- CONVLSTM
+In the context of sound, representing it through MFCC encapsulates the key characteristics of the sound. MFCC allows us to form two-dimensional matrices that can be interpreted as images, leveraging the advantages of CNNs for processing such data. The efficacy of CNNs in Acoustic Event Recognition (AER) has been demonstrated in the results of the community challenges of Detection and Classification of Acoustic Scenes and Events (DCASE) over the past decade.
 
-Based on the results and previous studies in the state-of-the-art, we selected the 2D Convolutional Neural Network (CNN2D) architecture for our Acoustic Event Recognition (AER) sensor.
+### MFCC Feature Extraction Process
 
-### Selected Model Architecture
+The process of calculating MFCC unfolds as follows:
 
-Various studies have employed CNN architectures for the efficient classification and detection of acoustic events. Some of these architectures have been developed based on research and outcomes from the DCASE challenges. Typically, these architectures consist of multiple blocks of convolutional layers, activation layers utilizing the rectified linear unit (ReLU) function, pooling layers, and regularization through dropout.
+1. **Segmentation and Window Application**: The signal is divided into short frames.
+2. **Power Spectrum Computation**: Using the Fast Fourier Transform (FFT) for each window.
+3. **Mel Scale Transformation**: The power spectrum is transformed to the Mel scale by applying a Mel filter bank.
+4. **Logarithm of Filter Bank Energies**: The total energy of each filter bank is calculated, and its logarithm is obtained.
+5. **Discrete Cosine Transform (DCT)**: The MFCC coefficients are extracted and organized into a matrix.
 
-**Studies and Findings:**
-- Chen et al. (2017) and Doshi et al. (2022) have contributed significantly to the development of CNN architectures for acoustic event detection.
-- Tsalera et al. (2021) evaluated large-scale convolution architectures such as GoogLeNet, SqueezeNet, ShuffleNet, VGGish, and YAMNet using the UrbanSound8k dataset. The VGGish architecture achieved the highest performance with an accuracy of 96.7%. However, VGGish requires approximately 360.72 MFLOPS for inference and classifies multiple sounds simultaneously. Since our objective is to identify CNN models with lower computational requirements, a large-scale architecture like VGGish is not the optimal choice for recognizing a single acoustic event.
+![MFCC audio feature extraction process](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/7653e4f4-f18a-419d-b663-d1498f299d21)
 
-Therefore, some articles, such as Massoudi et al. (2021), have introduced reduced models based on architectures similar to VGGish for recognizing a smaller set of acoustic events.
+### Hyperparameter Optimization for MFCC
 
-### Architecture Description
+To optimize the feature extraction of MFCC for the recognition of selected urban acoustic events, we conducted a preliminary exploration of the design space to understand the influence of MFCC parameters. We evaluated the accuracy performance of CNN models for these acoustic recognition tasks. The hyperparameters included in the design space exploration and the values evaluated were as follows:
 
-In our experiments, we adopted the convolutional architecture with ReLU activation presented by Massoudi et al. (2021) as a reference. The authors directly evaluated this architecture on the UrbanSound8k dataset to recognize the ten classes in the set, achieving a model performance with an accuracy of 91%.
+- **Length of the Fast Fourier Transform (FFT) (Nfft)**: Values of 256, 512, 1024, 2048, and 4096 samples.
+- **Window Size (NwinL)**: Values of 256, 512, 1024, 2048, and 4096 samples.
+- **Window Step Length (NhopL)**: Variations of 25%, 50%, 75%, and 100%.
+- **Number of MFCC (Nmfcc)**: Ranging from 3 to 45 with an increment of 3.
+- **CNN Kernel Size (Ksize)**: Values of 2, 3, 5, and 7.
 
-The reference architecture consists of:
+We used the Hanning window as the default window type, as it has been reported to exhibit the best overall performance without being tied to a specific application.
 
-- **4 Convolutional Blocks**: Each block comprises a 2D convolutional layer with a kernel size of (2×2), followed by ReLU activation, a max-pooling layer with a pool size of (2×2), and a dropout regularization of 0.2.
-- **Convolutional Filters**: The number of convolutional filters increases for each block being 16, 32, 64, and 128.
-- **Global Average Pooling Layer**: This layer is included after the convolutional blocks.
-- **Flattened Layer**: The output of the pooling layer is flattened.
-- **Dense Layer with Softmax Activation**: This layer is used for the final classification.
+The ranges of hyperparameter values evaluated were selected based on previous studies conducted on MFCC feature configurations. This combination of five hyperparameters resulted in a total of 3600 possible models, excluding configurations where the FFT size is greater than the window size.
 
-![image](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/7653e4f4-f18a-419d-b663-d1498f299d21)
+In our study, we identified the Pareto optimal models for recognizing the acoustic events of gunshots, sirens, and screams using metrics such as the model's performance measured by the F1-Score and the model's inference computation requirements measured in FLOPS. Generally, models using higher parameter values (such as MFCC coefficients, window size, smaller hops, etc.) tend to perform better in acoustic event recognition. However, these models are more computationally expensive and may take longer to train and evaluate.
 
-### References
 
-- **Chen et al. (2017)**: Chen, Y., Zhang, Y., and Duan, Z. (2017). Dcase2017 sound event detection using convolutional neural network. Detection and Classification of Acoustic Scenes and Events. Available at: [https://dcase.community/documents/challenge2017/technical_reports/DCASE2017_Chen_124.pdf](https://dcase.community/documents/challenge2017/technical_reports/DCASE2017_Chen_124.pdf)
-- **Doshi et al. (2022)**: Doshi, S., Patidar, T., Gautam, S., and Kumar, R. (2022). Acoustic Scene Analysis and Classification Using Densenet Convolutional Neural Network. Tech. rep., EasyChair. Available at: [https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.19728895.v1](https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.19728895.v1)
-- **Tsalera et al. (2021)**: Tsalera, E., Papadakis, A., and Samarakou, M. (2021). Comparison of pre-trained cnns for audio classification using transfer learning. Journal of Sensor and Actuator Networks 10, 72. Available at: [https://www.mdpi.com/2224-2708/10/4/72](https://www.mdpi.com/2224-2708/10/4/72)
-- **Massoudi et al. (2021)**: Massoudi, M., Verma, S., and Jain, R. (2021). Urban sound classification using cnn. In 2021 6th International Conference on Inventive Computation Technologies (ICICT) (IEEE), 583–589. Available at: [https://www.researchgate.net/profile/Massoud-Massoudi/publication/349660725_Urban_Sound_Classification_using_CNN/links/615fd85b1eb5da761e5e0dd5/Urban-Sound-Classification-using-CNN.pdf](https://www.researchgate.net/profile/Massoud-Massoudi/publication/349660725_Urban_Sound_Classification_using_CNN/links/615fd85b1eb5da761e5e0dd5/Urban-Sound-Classification-using-CNN.pdf)
 
+### Repository Structure
+
+This part of repository is organized as follows:
+
+- **scripts**: Contains the different scripts for executing model experiments under various MFCC hyperparameter configurations, including scripts for execution and temporal measurements.
+- **output**: Includes the output of the scripts, such as execution times and model performance metrics for each configuration.
+- **data_analyzer**: Contains scripts for analyzing the output from the experiments. The results of these analyses are found in the `output_data` directory within this folder.
