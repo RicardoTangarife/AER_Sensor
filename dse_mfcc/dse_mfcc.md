@@ -14,7 +14,8 @@ The process of calculating MFCC unfolds as follows:
 4. **Logarithm of Filter Bank Energies**: The total energy of each filter bank is calculated, and its logarithm is obtained.
 5. **Discrete Cosine Transform (DCT)**: The MFCC coefficients are extracted and organized into a matrix.
 
-![MFCC audio feature extraction process](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/7653e4f4-f18a-419d-b663-d1498f299d21)
+![image](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/f937035a-df90-4d31-95c9-0e1f56aca429)
+
 
 ### Hyperparameter Optimization for MFCC
 
@@ -32,6 +33,7 @@ The ranges of hyperparameter values evaluated were selected based on previous st
 
 In our study, we identified the Pareto optimal models for recognizing the acoustic events of gunshots, sirens, and screams using metrics such as the model's performance measured by the F1-Score and the model's inference computation requirements measured in FLOPS. Generally, models using higher parameter values (such as MFCC coefficients, window size, smaller hops, etc.) tend to perform better in acoustic event recognition. However, these models are more computationally expensive and may take longer to train and evaluate.
 
+![image](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/147ab22e-63fa-40ed-a8df-9a78c637846d)
 
 
 ### Repository Structure
