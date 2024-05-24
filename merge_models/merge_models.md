@@ -1,45 +1,54 @@
-## Design Space Exploration for MFCC Feature Extraction
+# CNN Model Fusion Strategies for Acoustic Event Recognition (AER)
 
-The Mel-frequency cepstral coefficients (MFCC) have been widely employed due to their proven effectiveness in describing audio features and structures. This method has proven valuable in automatic speech recognition, music information retrieval, environmental sound retrieval, and the detection, classification, and recognition of acoustic events.
+In this section, we detail the different fusion strategies implemented for combining convolutional neural network (CNN) models aimed at improving performance in acoustic event recognition (AER). The directory is organized into two subfolders: one containing the models for transfer learning and reference models, and the other containing the similarity metric used to measure the degree of fusion between models. Additionally, we present four main fusion strategies.
 
-In the context of sound, representing it through MFCC encapsulates the key characteristics of the sound. MFCC allows us to form two-dimensional matrices that can be interpreted as images, leveraging the advantages of CNNs for processing such data. The efficacy of CNNs in Acoustic Event Recognition (AER) has been demonstrated in the results of the community challenges of Detection and Classification of Acoustic Scenes and Events (DCASE) over the past decade.
+## Fusion Strategies
 
-### MFCC Feature Extraction Process
+- **Layer-wise Merge**: This strategy involves swapping entire layers between two models, evaluating the performance of each swap, and selecting the configuration that maximizes the F1-Score for both tasks.
+- **Filter Merge Without Performance Evaluation**: Here, filters are merged by averaging their weights or selecting the maximum/minimum weight values without evaluating their performance during the merging process.
+- **Performance-based Filter Merge Without Similarity Metric Evaluation**: This method swaps filters based on their performance on the test dataset, selecting filters that yield the highest average F1-Score.
+- **Performance-based Filter Merge With Similarity Metric Evaluation**: This final strategy combines performance evaluation with a similarity metric, exchanging filters only if they surpass a similarity threshold.
 
-The process of calculating MFCC unfolds as follows:
+## Subfolders
 
-1. **Segmentation and Window Application**: The signal is divided into short frames.
-2. **Power Spectrum Computation**: Using the Fast Fourier Transform (FFT) for each window.
-3. **Mel Scale Transformation**: The power spectrum is transformed to the Mel scale by applying a Mel filter bank.
-4. **Logarithm of Filter Bank Energies**: The total energy of each filter bank is calculated, and its logarithm is obtained.
-5. **Discrete Cosine Transform (DCT)**: The MFCC coefficients are extracted and organized into a matrix.
+### Transfer Learning and Reference Models
 
-![image](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/f937035a-df90-4d31-95c9-0e1f56aca429)
+This subfolder contains the specific models used for transfer learning and the reference models trained for two-class classifications, serving as benchmarks.
+
+- **Base Model**: Trained on 12 classes from the UrbanSound8k dataset, achieving an F1-Score of 90%.
+- **Specific Models**: These include models retrained for individual events like Gunshot, Siren, and Scream, each achieving F1-Scores of 97% or higher.
+- **Two-Class Reference Models**: Models retrained to classify pairs of events, such as Gunshot-Scream, Gunshot-Siren, and Scream-Siren, with F1-Scores of up to 99%.
+
+| Model             | F1-Score |
+|-------------------|----------|
+| Base Model        | 90%      |
+| Gunshot           | 99%      |
+| Siren             | 97%      |
+| Scream            | 99%      |
+| Gunshot - Scream  | 99%      |
+| Gunshot - Siren   | 97%      |
+| Scream - Siren    | 97%      |
+
+### Similarity Metric
+
+This subfolder includes the metric used to evaluate the similarity between models, facilitating the fusion process by identifying filters that can be exchanged or averaged.
+
+- **Similarity by Filters Metric**: This metric is based on the Euclidean difference and norm of the filters, providing a similarity score between 0 and 1. A score close to 1 indicates high similarity.
+  
+![image](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/5c96abed-ae93-48a8-97cc-6d2cd0f4a1cf)
+![image](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/c9e16e52-9627-431f-84dd-1ab8bafde29e)
+
+### Example Results
+Below are example results of the similarity metric applied between two models, demonstrating how similarity values help in the fusion process.
+
+Similarity Metric Results for Models Trained by Transfer Learning Comparison of Gunshot vs. Screams with Normalized Filters, Configuration 1.
+![image](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/587eefdd-4d6a-42f3-bbdd-963da8755853)
 
 
-### Hyperparameter Optimization for MFCC
+### Comparative Summary of Fusion Strategies
+Finally, we present a comparative summary of the performance of the merging strategies applied to the different acoustic event models studied. The most effective merging strategies identified were filter merging evaluating performance without similarity metrics, and filter merging with similarity metrics using a threshold below 80%, both optimized towards the average. These strategies outperformed the average performance of individual models and the reference two-class model. Among these alternatives, filter merging without similarity metrics stands out as the computationally less expensive option.
+Additionally, the filter merging strategy with average optimization achieved good performance with the different merged models and is computationally less costly than the performance-based strategies, as it does not require evaluating the model on the test data when performing merge for each filter.
 
-To optimize the feature extraction of MFCC for the recognition of selected urban acoustic events, we conducted a preliminary exploration of the design space to understand the influence of MFCC parameters. We evaluated the accuracy performance of CNN models for these acoustic recognition tasks. The hyperparameters included in the design space exploration and the values evaluated were as follows:
-
-- **Length of the Fast Fourier Transform (FFT) (Nfft)**: Values of 256, 512, 1024, 2048, and 4096 samples.
-- **Window Size (NwinL)**: Values of 256, 512, 1024, 2048, and 4096 samples.
-- **Window Step Length (NhopL)**: Variations of 25%, 50%, 75%, and 100%.
-- **Number of MFCC (Nmfcc)**: Ranging from 3 to 45 with an increment of 3.
-- **CNN Kernel Size (Ksize)**: Values of 2, 3, 5, and 7.
-
-We used the Hanning window as the default window type, as it has been reported to exhibit the best overall performance without being tied to a specific application.
-
-The ranges of hyperparameter values evaluated were selected based on previous studies conducted on MFCC feature configurations. This combination of five hyperparameters resulted in a total of 3600 possible models, excluding configurations where the FFT size is greater than the window size.
-
-In our study, we identified the Pareto optimal models for recognizing the acoustic events of gunshots, sirens, and screams using metrics such as the model's performance measured by the F1-Score and the model's inference computation requirements measured in FLOPS. Generally, models using higher parameter values (such as MFCC coefficients, window size, smaller hops, etc.) tend to perform better in acoustic event recognition. However, these models are more computationally expensive and may take longer to train and evaluate.
-
-![image](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/147ab22e-63fa-40ed-a8df-9a78c637846d)
+![image](https://github.com/RicardoTangarife/AER_Sensor/assets/36963665/42fd3b71-2d34-4015-a303-74fbd81de1d2)
 
 
-### Repository Structure
-
-This part of repository is organized as follows:
-
-- **scripts**: Contains the different scripts for executing model experiments under various MFCC hyperparameter configurations, including scripts for execution and temporal measurements.
-- **output**: Includes the output of the scripts, such as execution times and model performance metrics for each configuration.
-- **data_analyzer**: Contains scripts for analyzing the output from the experiments. The results of these analyses are found in the `output_data` directory within this folder.
