@@ -20,19 +20,19 @@ The models are in TensorFlow Lite format for execution on edge devices. The mode
 
 | Model                                          |   F1-Score  | Description                                                            |
 |------------------------------------------------|-------------|------------------------------------------------------------------------|
-| fused_gun_scream_optAVG_1.tflite               |   98%       | Fusion model for gunshot and scream with AVG method Performance-based Filter Merge Without Similarity Metric Evaluation configuration 1    |
-| fused_gun_scream_optAVG_4.tflite               |   98%       | Fusion model for gunshot and scream with AVG method Performance-based Filter Merge Without Similarity Metric Evaluation configuration 2    |
-| fused_gun_scream_sim20_optAVG_1_N.tflite       |   98%       | Fusion model for gunshot and scream with AVG method (similarity threshold 80%) with normalized filters configuration 1    |
-| fused_gun_scream_sim20_optAVG_1.tflite         |   97%       | Fusion model for gunshot and scream with AVG method (similarity threshold 80%) without normalized filters configuration 1    |
-| fused_gun_scream_sim20_optAVG_4_N.tflite       |   98%       | Fusion model for gunshot and scream with AVG method (similarity threshold 80%) with normalized filters configuration 2    |
-| fused_gun_siren_optAVG_1.tflite                |   89%       | Fusion model for gunshot and siren with AVG method  Performance-based Filter Merge Without Similarity Metric Evaluation configuration 1    |
-| fused_gun_siren_optAVG_4.tflite                |   98%       | Fusion model for gunshot and siren with AVG method  Performance-based Filter Merge Without Similarity Metric Evaluation configuration 2    |
-| fused_gun_siren_sim20_optAVG_1_N.tflite        |   89%       | Fusion model for gunshot and siren with AVG method (similarity threshold 80%) with normalized filters configuration 1    |
-| fused_gun_siren_sim40_optAVG_1_N.tflite        |   89%       | Fusion model for gunshot and siren with AVG method (similarity threshold 60%) with normalized filters configuration 1    |
-| fused_gun_siren_sim40_optAVG_4_N.tflite        |   96%       | Fusion model for gunshot and siren with AVG method (similarity threshold 60%) with normalized filters configuration 2    |
-| fused_scream_siren_optAVG_1.tflite             |   91%       | Fusion model for scream and siren with AVG method Performance-based Filter Merge Without Similarity Metric Evaluation configuration 1    |
-| fused_scream_siren_optAVG_4.tflite             |   97%       | Fusion model for scream and siren with AVG method  Performance-based Filter Merge Without Similarity Metric Evaluation configuration 2    |
-| fused_scream_siren_sim20_optAVG_1_N.tflite     |   90%       | Fusion model for scream and siren with AVG method (similarity threshold 80%) with normalized filters configuration 1    |
+| fused_gun_scream_optAVG_1.tflite               |   98%       | Fused model for gunshot and scream with AVG method Performance-based Filter Merge Without Similarity Metric Evaluation configuration 1    |
+| fused_gun_scream_optAVG_4.tflite               |   98%       | Fused model for gunshot and scream with AVG method Performance-based Filter Merge Without Similarity Metric Evaluation configuration 2    |
+| fused_gun_scream_sim20_optAVG_1_N.tflite       |   98%       | Fused model for gunshot and scream with AVG method (similarity threshold 80%) with normalized filters configuration 1    |
+| fused_gun_scream_sim20_optAVG_1.tflite         |   97%       | Fused model for gunshot and scream with AVG method (similarity threshold 80%) without normalized filters configuration 1    |
+| fused_gun_scream_sim20_optAVG_4_N.tflite       |   98%       | Fused model for gunshot and scream with AVG method (similarity threshold 80%) with normalized filters configuration 2    |
+| fused_gun_siren_optAVG_1.tflite                |   89%       | Fused model for gunshot and siren with AVG method  Performance-based Filter Merge Without Similarity Metric Evaluation configuration 1    |
+| fused_gun_siren_optAVG_4.tflite                |   98%       | Fused model for gunshot and siren with AVG method  Performance-based Filter Merge Without Similarity Metric Evaluation configuration 2    |
+| fused_gun_siren_sim20_optAVG_1_N.tflite        |   89%       | Fused model for gunshot and siren with AVG method (similarity threshold 80%) with normalized filters configuration 1    |
+| fused_gun_siren_sim40_optAVG_1_N.tflite        |   89%       | Fused model for gunshot and siren with AVG method (similarity threshold 60%) with normalized filters configuration 1    |
+| fused_gun_siren_sim40_optAVG_4_N.tflite        |   96%       | Fused model for gunshot and siren with AVG method (similarity threshold 60%) with normalized filters configuration 2    |
+| fused_scream_siren_optAVG_1.tflite             |   91%       | Fused model for scream and siren with AVG method Performance-based Filter Merge Without Similarity Metric Evaluation configuration 1    |
+| fused_scream_siren_optAVG_4.tflite             |   97%       | Fused model for scream and siren with AVG method  Performance-based Filter Merge Without Similarity Metric Evaluation configuration 2    |
+| fused_scream_siren_sim20_optAVG_1_N.tflite     |   90%       | Fused model for scream and siren with AVG method (similarity threshold 80%) with normalized filters configuration 1    |
 | saved_gun_scream_siren_TL_1.tflite             |   84%       | Transfer learning model for gunshot, scream, and siren configuration 1    |
 | saved_gun_scream_siren_TL_4.tflite             |   96%       | Transfer learning model for gunshot, scream, and siren configuration 2    |
 | saved_gun_scream_TL_1.tflite                   |   95%       | Transfer learning model for gunshot and scream biclass configuration 1    |
